@@ -10,9 +10,12 @@ npm run build
 # 目标页面和资源/脚本 均在 dist目录下了
 ```
 
+[构建脚本来源](https://github.com/hangxingliu/fe-build-scripts)
+
 ### 线上部署
 
-复制dist目录下的内容到服务器静态资源目录下的任意路径即可(然后访问对应路径的URL即可)
+复制dist目录下的内容到服务器静态资源目录下的任意路径即可(然后访问对应路径的URL即可)   
+**记得删除掉`dist/scripts/`下面的`.map`文件**
 
 ### 本地测试
 
