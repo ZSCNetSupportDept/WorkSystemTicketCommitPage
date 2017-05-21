@@ -1,0 +1,125 @@
+<div class="modal-content">
+	<div class="modal-header">
+		<h5 class="modal-title">确认录入</h5>
+		<button type="button" class="close" onclick="app.hideConfirmDialog()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+	</div>
+	<div class="modal-body">
+		<form action="#" method="POST" id="formCommit">
+
+			<div class="container-fluid">
+				<div class="row" id="commitSuccess"><div class="col-12"><div class="alert alert-success">录入成功!</div></div></div>
+				<div class="row"> <p class="text-muted">如果自动识别录入内容有误,请在下方手动调整:</p> </div>
+
+				<!-- 录入类型 -->
+				<div class="row">
+					<div class="col-12 col-md-4 col-lg-3 mb-2">
+						<div class="input-group">
+							<span class="input-group-addon" style="min-width: 100px" >录入类型:</span>
+							<div class="form-control text-muted" name="situation_order_string" data-color="primary" >工单</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-8 col-lg-9 mb-4 mb-md-2">
+						<button type="button" data-bind="situation_order_string" class="btn btn-outline-secondary">工单</button>
+						<button type="button" data-bind="situation_order_string" class="btn btn-outline-secondary">新装</button>
+						<button type="button" data-bind="situation_order_string" class="btn btn-outline-secondary">投诉</button>
+					</div>
+				</div>
+
+				<!-- 录入类型 -->
+				<div class="row">
+					<div class="col-12 col-md-4 col-lg-3 mb-2">
+						<div class="input-group">
+							<span class="input-group-addon" style="min-width: 100px" >运营商:</span>
+							<div class="form-control text-muted" name="operator" data-color="info" 
+								data-convert-get="add_china_prefix"
+								data-convert-set="remove_china_prefix">移动</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-8 col-lg-9 mb-4 mb-md-2">
+						<button type="button" data-bind="operator" class="btn btn-outline-secondary">移动</button>
+						<button type="button" data-bind="operator" class="btn btn-outline-secondary">电信</button>
+						<button type="button" data-bind="operator" class="btn btn-outline-secondary">联通</button>
+					</div>
+				</div>
+
+				<!-- 所属片区 -->
+				<div class="row ">
+					<div class="col-12 col-lg-3 mb-2">
+						<div class="input-group">
+							<span class="input-group-addon" style="min-width: 100px" >所属片区:</span>
+							<div class="form-control text-muted" name="work_area" data-color="success" >朝晖苑</div>
+						</div>
+					</div>
+					<div class="col-12 col-lg-9 mb-4 mb-lg-2">
+						<button type="button" data-bind="work_area" class="mb-1 btn btn-outline-secondary">香晖苑</button>					
+						<button type="button" data-bind="work_area" class="mb-1 btn btn-outline-secondary">朝晖苑</button>
+						<button type="button" data-bind="work_area" class="mb-1 btn btn-outline-secondary">凤翔</button>
+						<button type="button" data-bind="work_area" class="mb-1 btn btn-outline-secondary">北门</button>
+						<button type="button" data-bind="work_area" class="mb-1 btn btn-outline-secondary">岐头</button>
+						<button type="button" data-bind="work_area" class="mb-1 btn btn-outline-secondary">东门</button>
+						<button type="button" data-bind="work_area" class="mb-1 btn btn-outline-secondary">香山别墅</button>
+					</div>
+				</div>
+
+				<!-- 宿舍号 -->
+				<div class="row ">
+					<div class="col-12 col-md-6 col-lg-4 mb-4 mb-md-2">
+						<div class="input-group">
+							<span class="input-group-addon" style="min-width: 100px" >宿舍号:</span>
+							<input class="form-control " value="宿舍号" name="dormitory_number"/>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- 联系方式 -->
+				<div class="row ">
+					<div class="col-12 col-md-6 col-lg-4 mb-2">
+						<div class="input-group">
+							<span class="input-group-addon" style="min-width: 100px" >联系方式:</span>
+							<input class="form-control " value="电话号码" name="telephone_number"/>
+						</div>
+					</div>
+					<div class="col-12 col-lg-8 mb-4 mb-lg-2">
+						<label class="text-muted">其他号码参考: &nbsp;&nbsp;</label>
+						<div class="d-inline-block">
+							<button type="button" data-bind="telephone_number" class="btn btn-outline-secondary">11011011234</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- 宽带账号 -->
+				<div class="row">
+					<div class="col-12 col-md-8 col-lg-5 mb-2">
+						<label class="hidden-sm-up" >宽带账号:</label>
+						<div class="input-group">
+							<span class="input-group-addon hidden-xs-down" style="min-width: 100px" >宽带账号:</span>
+							<input class="form-control " value="宽带账号@139.gd" name="account_number"/>
+						</div>
+					</div>
+				</div>
+
+				<!-- 描述 -->
+				<div class="row">
+					<div class="col-12 mb-2">
+						<label class="hidden-sm-up" >描述:</label>
+						<div class="input-group">
+							<span class="input-group-addon hidden-xs-down" style="min-width: 100px" >描述:</span>
+							<textarea class="form-control" style="min-height: 100px" name="introduction">描述内容</textarea>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</form>
+	</div>
+
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-success" id="btnCommit" onclick="app.commit()">录入</button>
+		<button type="button" class="btn btn-secondary" onclick="app.hideConfirmDialog()">取消</button>
+	</div>
+</div>

@@ -1,0 +1,9 @@
+<% 
+	var list = [
+		'block_user_info/login',
+		'block_user_info/info'
+	];
+%>
+<% for(tmpl of list) { %>
+<script type="text/template" data-tmpl="<%=tmpl.replace('/', '_')%>" src="modules/<%=tmpl%>.html"></script>
+<% } %>

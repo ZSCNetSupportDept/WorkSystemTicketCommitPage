@@ -1,0 +1,43 @@
+{
+  "name": "zsc-work-system-ticket-commit-page",
+  "version": "0.0.1",
+  "description": "ZSC net support work system ticket quickly commit page",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "test": "mocha test/*.js",
+    "build": "node ./build/build.js",
+    "watch": "node ./build/build.js -w",
+    "server": "node ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZSCNetSupportDept/WorkSystemTicketCommitPage"
+  },
+  "keywords": [],
+  "author": "LiuYue",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ZSCNetSupportDept/WorkSystemTicketCommitPage/issues"
+  },
+  "homepage": "https://github.com/ZSCNetSupportDept/WorkSystemTicketCommitPage#readme",
+  "devDependencies": {
+    "autoprefixer": "*",
+    "babel-core": "*",
+    "browserify": "*",
+    "cheerio": "*",
+    "colors": "*",
+    "commander": "*",
+    "convert-source-map": "*",
+    "ejs": "*",
+    "express": "^4.15.3",
+    "fs-extra": "*",
+    "glob": "*",
+    "http-proxy-middleware": "^0.17.4",
+    "js-yaml": "*",
+    "morgan": "^1.8.1",
+    "node-sass": "*",
+    "postcss": "*",
+    "watch": "*"
+  }
+}

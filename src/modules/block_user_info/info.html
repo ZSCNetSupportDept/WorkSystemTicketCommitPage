@@ -1,0 +1,24 @@
+<style>
+#id_style_dl_fix dt, 
+#id_style_dl_fix dd {
+	display: inline;
+	margin-right: 40px;
+}
+</style>
+<div class="card">
+	<div class="card-header">用户信息</div>
+	<div class="card-block" id="id_style_dl_fix">
+		<dl class="mb-2"> <dt>姓名</dt> <dd><%= user.name %></dd> 
+			<a href="#" onclick="app.logout();">(注销)</a> 
+		</dl>
+		<dl class="mb-2"> 
+			<dt>移动工单</dt> <dd><%= work_orders.mobile %></dd> 
+			<dt>电信工单</dt> <dd><%= work_orders.telecom %></dd> <br/>
+			<dt>联通工单</dt> <dd><%= work_orders.unicom %></dd> 
+			<dt>投诉的单</dt> <dd><%= work_orders.complaints %></dd> 
+		</dl>
+		<div class="bg-faded p-2">
+			<b>公告:</b>&nbsp;&nbsp; <%= announcement%>
+		</div>
+	</div>
+</div>

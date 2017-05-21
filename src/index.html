@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="renderer" content="webkit" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" />
+	<title>
+		<%=title%>
+	</title>
+	<%- include("modules/layout/css") %>
+</head>
+
+<body>
+	<%- include("modules/layout/top_navbar") %>
+
+	<div class="container mt-1 mt-sm-3">
+		<div class="row hide-on-confirm">
+			<div class="col-12 col-sm-10 col-md-8 col-lg-6">
+				<div id="blockUserInfo"></div>
+			</div>
+			<div class="col-12 col-sm-10 col-md-4 col-lg-4 col-xl-4 mt-2 mt-md-0">
+				<%- include("modules/layout/shortcut_card") %>
+			</div>
+		</div>
+		<div class="row my-5" id="blockConfirm" style="display: none">
+			<div class="col-12">
+				<%- include("modules/layout/confirm_dialog") %>
+			</div>
+		</div>
+		<div class="row hide-on-confirm">
+			<div class="col-12">
+				<%- include("modules/layout/card_ticket_form") %>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12">
+				<hr/>
+				<p class="text-muted text-center">
+					Frontend: <a class="text-muted" href="https://github.com/hangxingliu" target="_blank">LiuYue</a>
+					<br/>
+					Server-side: 江南
+					<br/>
+					2017-05
+				</p>
+			</div>
+		</div>
+	</div>
+
+
+
+	<%- include("modules/layout/templates") %>
+	<%- include("modules/layout/js") %>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<title>
+		工单/报修 快速提交系统
+	</title>
+	<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+	<nav class="navbar navbar-light bg-faded">
+	<a class="navbar-brand" href="#">
+		工单提交
+	</a>
+
+</nav>
+
+	<div class="container mt-1 mt-sm-3">
+		<div class="row hide-on-confirm">
+			<div class="col-12 col-sm-10 col-md-8 col-lg-6">
+				<div id="blockUserInfo"></div>
+			</div>
+			<div class="col-12 col-sm-10 col-md-4 col-lg-4 col-xl-4 mt-2 mt-md-0">
+				<div class="card">
+	<div class="card-header">快捷键</div>
+	<div class="card-block">
+		<p class="d-inline d-md-block"><code>Ctrl+Enter</code>: 预览/提交工单   </p>
+		<p class="d-inline d-md-block"><code>Esc</code>: 关闭预览窗口</p>
+	</div>
+</div>
+			</div>
+		</div>
+		<div class="row my-5" id="blockConfirm" style="display: none">
+			<div class="col-12">
+				<div class="modal-content">
+	<div class="modal-header">
+		<h5 class="modal-title">确认录入</h5>
+		<button type="button" class="close" onclick="app.hideConfirmDialog()">
+          <span aria-hidden="true">×</span>
+        </button>
+	</div>
+	<div class="modal-body">
+		<form action="#" method="POST" id="formCommit">
+
+			<div class="container-fluid">
+				<div class="row" id="commitSuccess"><div class="col-12"><div class="alert alert-success">录入成功!</div></div></div>
+				<div class="row"> <p class="text-muted">如果自动识别录入内容有误,请在下方手动调整:</p> </div>
+
+				<!-- 录入类型 -->
+				<div class="row">
+					<div class="col-12 col-md-4 col-lg-3 mb-2">
+						<div class="input-group">
+							<span class="input-group-addon" style="min-width: 100px">录入类型:</span>
+							<div class="form-control text-muted" name="situation_order_string" data-color="primary">工单</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-8 col-lg-9 mb-4 mb-md-2">
+						<button type="button" data-bind="situation_order_string" class="btn btn-outline-secondary">工单</button>
+						<button type="button" data-bind="situation_order_string" class="btn btn-outline-secondary">新装</button>
+						<button type="button" data-bind="situation_order_string" class="btn btn-outline-secondary">投诉</button>
+					</div>
+				</div>
+
+				<!-- 录入类型 -->
+				<div class="row">
+					<div class="col-12 col-md-4 col-lg-3 mb-2">
+						<div class="input-group">
+							<span class="input-group-addon" style="min-width: 100px">运营商:</span>
+							<div class="form-control text-muted" name="operator" data-color="info" data-convert-get="add_china_prefix" data-convert-set="remove_china_prefix">移动</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-8 col-lg-9 mb-4 mb-md-2">
+						<button type="button" data-bind="operator" class="btn btn-outline-secondary">移动</button>
+						<button type="button" data-bind="operator" class="btn btn-outline-secondary">电信</button>
+						<button type="button" data-bind="operator" class="btn btn-outline-secondary">联通</button>
+					</div>
+				</div>
+
+				<!-- 所属片区 -->
+				<div class="row ">
+					<div class="col-12 col-lg-3 mb-2">
+						<div class="input-group">
+							<span class="input-group-addon" style="min-width: 100px">所属片区:</span>
+							<div class="form-control text-muted" name="work_area" data-color="success">朝晖苑</div>
+						</div>
+					</div>
+					<div class="col-12 col-lg-9 mb-4 mb-lg-2">
+						<button type="button" data-bind="work_area" class="mb-1 btn btn-outline-secondary">香晖苑</button>					
+						<button type="button" data-bind="work_area" class="mb-1 btn btn-outline-secondary">朝晖苑</button>
+						<button type="button" data-bind="work_area" class="mb-1 btn btn-outline-secondary">凤翔</button>
+						<button type="button" data-bind="work_area" class="mb-1 btn btn-outline-secondary">北门</button>
+						<button type="button" data-bind="work_area" class="mb-1 btn btn-outline-secondary">岐头</button>
+						<button type="button" data-bind="work_area" class="mb-1 btn btn-outline-secondary">东门</button>
+						<button type="button" data-bind="work_area" class="mb-1 btn btn-outline-secondary">香山别墅</button>
+					</div>
+				</div>
+
+				<!-- 宿舍号 -->
+				<div class="row ">
+					<div class="col-12 col-md-6 col-lg-4 mb-4 mb-md-2">
+						<div class="input-group">
+							<span class="input-group-addon" style="min-width: 100px">宿舍号:</span>
+							<input class="form-control " value="宿舍号" name="dormitory_number">
+						</div>
+					</div>
+				</div>
+
+
+				<!-- 联系方式 -->
+				<div class="row ">
+					<div class="col-12 col-md-6 col-lg-4 mb-2">
+						<div class="input-group">
+							<span class="input-group-addon" style="min-width: 100px">联系方式:</span>
+							<input class="form-control " value="电话号码" name="telephone_number">
+						</div>
+					</div>
+					<div class="col-12 col-lg-8 mb-4 mb-lg-2">
+						<label class="text-muted">其他号码参考:   </label>
+						<div class="d-inline-block">
+							<button type="button" data-bind="telephone_number" class="btn btn-outline-secondary">11011011234</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- 宽带账号 -->
+				<div class="row">
+					<div class="col-12 col-md-8 col-lg-5 mb-2">
+						<label class="hidden-sm-up">宽带账号:</label>
+						<div class="input-group">
+							<span class="input-group-addon hidden-xs-down" style="min-width: 100px">宽带账号:</span>
+							<input class="form-control " value="宽带账号@139.gd" name="account_number">
+						</div>
+					</div>
+				</div>
+
+				<!-- 描述 -->
+				<div class="row">
+					<div class="col-12 mb-2">
+						<label class="hidden-sm-up">描述:</label>
+						<div class="input-group">
+							<span class="input-group-addon hidden-xs-down" style="min-width: 100px">描述:</span>
+							<textarea class="form-control" style="min-height: 100px" name="introduction">描述内容</textarea>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</form>
+	</div>
+
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-success" id="btnCommit" onclick="app.commit()">录入</button>
+		<button type="button" class="btn btn-secondary" onclick="app.hideConfirmDialog()">取消</button>
+	</div>
+</div>
+			</div>
+		</div>
+		<div class="row hide-on-confirm">
+			<div class="col-12">
+				<div class="card mt-3">
+	<div class="card-header">输入/添加工单</div>
+	<div class="card-block">
+		<div class="form-group">
+			<div class="mb-2 clearfix">  
+				<label for="txtTicketDesc">工单描述语句: (Ctrl+Enter 提交)</label>
+				<button class="btn btn-info float-right" onclick="app.previewTicketBeforeCommit()">预览/提交</button>
+			</div>
+			<textarea class="form-control" id="txtTicketDesc" rows="8" style="font-size: 22px;" onkeydown="app.onTicketDescChange(event)"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="txtDump">测试输出:</label>
+			<pre><code class="form-control" id="txtDump"></code></pre>
+		</div>
+	</div>
+</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12">
+				<hr>
+				<p class="text-muted text-center">
+					Frontend: <a class="text-muted" href="https://github.com/hangxingliu" target="_blank">LiuYue</a>
+					<br>
+					Server-side: 江南
+					<br>
+					2017-05
+				</p>
+			</div>
+		</div>
+	</div>
+
+
+
+	
+
+<script type="text/template" data-tmpl="block_user_info_login"><div class="card">
+	<div class="card-header">用户登录</div>
+	<div class="card-block">
+		<form id="formLogin" action="" method="post" onsubmit="app.login(event)">
+			<div class="alert alert-danger" role="alert" style="display: none"></div>
+			<div class="input-group mb-2">
+				<span class="input-group-addon" style="min-width: 70px">WHO</span>
+				<input type="text" name="username" placeholder="username" class="form-control" required>
+			</div>
+			<div class="input-group mb-2">
+				<span class="input-group-addon" style="min-width: 70px">KEY</span>
+				<input type="password" name="password" placeholder="password" class="form-control" required>
+			</div>
+			<div class="">
+				<button type="submit" class="btn btn-success float-right">LOGIN</button>
+			</div>
+		</form>
+	</div>
+</div></script>
+
+<script type="text/template" data-tmpl="block_user_info_info"><style>
+#id_style_dl_fix dt, 
+#id_style_dl_fix dd {
+	display: inline;
+	margin-right: 40px;
+}
+</style>
+<div class="card">
+	<div class="card-header">用户信息</div>
+	<div class="card-block" id="id_style_dl_fix">
+		<dl class="mb-2"> <dt>姓名</dt> <dd><%= user.name %></dd> 
+			<a href="#" onclick="app.logout();">(注销)</a> 
+		</dl>
+		<dl class="mb-2"> 
+			<dt>移动工单</dt> <dd><%= work_orders.mobile %></dd> 
+			<dt>电信工单</dt> <dd><%= work_orders.telecom %></dd> <br>
+			<dt>联通工单</dt> <dd><%= work_orders.unicom %></dd> 
+			<dt>投诉的单</dt> <dd><%= work_orders.complaints %></dd> 
+		</dl>
+		<div class="bg-faded p-2">
+			<b>公告:</b>   <%= announcement%>
+		</div>
+	</div>
+</div></script>
+
+	<script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="libs/tether/js/tether.min.js"></script>
+<script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="libs/ejs/ejs.min.js"></script>
+<script type="text/javascript" src="scripts/index.js"></script>
+</body>
+</html>

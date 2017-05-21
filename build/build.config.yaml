@@ -1,0 +1,33 @@
+name: Example Project
+src: 
+    base: src
+    assets: 
+        - libs
+    pages: 
+        - "*.html"
+    scripts:
+        - "scripts/index.js"
+    styles:
+        - "styles/*.scss"
+dist: 
+    base: dist
+    clean: true
+
+watch:
+    - "src"
+
+processor:
+    sass: false
+    less: false
+    autoprefixer: false
+    babel: 
+        enable: true
+        babelrc: .babelrc
+    ejs: true
+    ejs_variables:
+        enable: true
+        files:
+            - variables.yaml
+    ejs_template_tags: 
+        enable: true
+        selector: script[type="text/template"]
