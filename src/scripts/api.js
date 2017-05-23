@@ -25,8 +25,10 @@ let url = require('./url');
 			.map(cookie => newCSRF = cookie.slice(CSRF_NAME.length));
 		
 		//没有从Cookie中拿到就从返回结果中拿
-		if (!newCSRF && data && data.csrf_token)
-			document.cookie = `${CSRF_NAME}${newCSRF = data.csrf_token}`;
+		if (!newCSRF && data && data.csrf_token) {
+			// document.cookie = `${CSRF_NAME}${newCSRF = data.csrf_token}`;
+			newCSRF = data.csrf_token;
+		}
 		
 		_csrf = newCSRF || _csrf;
 	}

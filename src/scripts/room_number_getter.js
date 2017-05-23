@@ -17,7 +17,7 @@ function getRoomNumber(text) {
 	//朝晖苑
 	//1111房-2床
 	match = text.match(/([01]?\d{3})(?:房-|房|-)(0?\d)床?\b/);
-	if (match) return match[1] + '房' +(match[2] || '');
+	if (text.match(/朝晖苑/) && match) return match[1] + '房' +(match[2] || '');
 
 	//朝晖苑只有宿舍号的情况	
 	match = text.match(/\b(1?\d{3})(?:房)?\b/);
@@ -25,12 +25,12 @@ function getRoomNumber(text) {
 
 	//凤翔:
 	//4栋/508-4
-	match = text.match(/\b([1-6])栋[\/\\\-\s]*(\d{3})(-?[1-4])?\b/);
+	match = text.match(/\D([1-6])栋[\/\\\-\s]*(\d{3})(-?[1-4])?\D/);
 	if (match) return match[1] + '栋' + match[2] + (match[3] || '');
 	
 	//11-345
 	//12栋234
-	match = text.match(/\b([7-9]|[12]\d)\s*(?:栋|\-)\s*(\d{3})\b/);
+	match = text.match(/\D([7-9]|[12]\d)\s*(?:栋|\-)\s*(\d{3})\D/);
 	if (match) return match[1] + '栋' + match[2];
 	
 	return '';

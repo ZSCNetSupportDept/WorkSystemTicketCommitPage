@@ -7,7 +7,7 @@ let keywords = {
 	new_account: ['上门安装', '安装', '新装', '报装'],
 	new_account_atleast: 2,
 
-	user_fuck: ['投诉'],
+	user_fuck: ['投诉单'],
 	user_fuck_atleast: 1,
 
 	from_cmcc_important: ['CMCC', '移动工单'],
