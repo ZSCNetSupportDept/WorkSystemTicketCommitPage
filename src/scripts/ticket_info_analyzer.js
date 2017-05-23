@@ -10,7 +10,10 @@ let keywords = {
 	user_fuck: ['投诉'],
 	user_fuck_atleast: 1,
 
-	from_cmcc: ['移动工单', 'CMCC', '感知平台', '家庭宽带业务', '10086', '重启MODEM'],
+	from_cmcc_important: ['CMCC', '移动工单'],
+	from_cmcc_important_atleast: 1,
+
+	from_cmcc: ['移动工单', '感知平台', '家庭宽带业务', '10086', '重启MODEM'],
 	from_cmcc_atleast: 2,
 
 	from_unicom: ['@16900.gd', 'ZSZJLAN', '张琳', '联通'],
@@ -83,6 +86,9 @@ function getWorkArea(text) {
 }
 
 function getOperator(text) {
+	if (keywords.from_cmcc_important.map(v => hasSubString(text, v)).map(bool2num).reduce(APlusB, 0)	
+		>= keywords.from_cmcc_important_atleast)
+		return '中国移动';
 	if (keywords.from_cmcc.map(v => hasSubString(text, v)).map(bool2num).reduce(APlusB, 0)	
 		>= keywords.from_cmcc_atleast)
 		return '中国移动';
